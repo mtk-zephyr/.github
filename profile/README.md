@@ -13,21 +13,29 @@ Running Zephyr alongside Linux with Jailhouse on Genio 510 and Genio 700 EVKs.**
 Build the IoT Yocto image with Jailhouse, flash the board, build Zephyr and the
 Genio samples, and run Zephyr in a Jailhouse cell, step by step.
 
-A complete Zephyr workspace, with the Genio tree, its modules and the samples
-(the guide's Chapter 5 sets up the toolchain):
+**Current release:** `mtk-genio-v1.0.0` of mtk-zephyr and the samples, paired
+with [MediaTek Jailhouse](https://github.com/mtk-jailhouse/jailhouse) `mtk-v1.0.0`
+and described by [user guide 1.0](https://github.com/mtk-zephyr/genio-docs/releases/tag/v1.0).
+
+A complete Zephyr workspace at that release, with the Genio tree, its modules
+and the samples (the guide's Chapter 5 sets up the toolchain):
 
 ```bash
-west init -m https://github.com/mtk-zephyr/samples genio-workspace
+west init -m https://github.com/mtk-zephyr/samples --mr mtk-genio-v1.0.0 genio-workspace
 cd genio-workspace
 west update
 ```
+
+The release tag pins the Genio tree, so `west update` gives the same tree every
+time. Without `--mr`, you get the samples' `main`, which follows the
+development branch `mtk-genio-dev`; that branch is rebased and force-pushed.
 
 ## Repositories
 
 | Repository | Content |
 |---|---|
-| [mtk-zephyr](https://github.com/mtk-zephyr/mtk-zephyr) | The Genio Zephyr tree: board support and drivers |
-| [samples](https://github.com/mtk-zephyr/samples) | The Genio samples, and the west manifest of a complete workspace |
+| [mtk-zephyr](https://github.com/mtk-zephyr/mtk-zephyr) | The Genio Zephyr tree: board support and drivers. Releases are tags (`mtk-genio-v1.0.0`); development is on `mtk-genio-dev` |
+| [samples](https://github.com/mtk-zephyr/samples) | The Genio samples, and the west manifest of a complete workspace; its release tags pin the tree |
 | [genio-docs](https://github.com/mtk-zephyr/genio-docs) | Documentation, including the user guide |
 
 ## Supported boards
