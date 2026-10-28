@@ -13,29 +13,39 @@ Running Zephyr alongside Linux with Jailhouse on Genio 510 and Genio 700 EVKs.**
 Build the IoT Yocto image with Jailhouse, flash the board, build Zephyr and the
 Genio samples, and run Zephyr in a Jailhouse cell, step by step.
 
-**Current release:** `mtk-genio-v1.0.0` of mtk-zephyr and the samples, paired
-with [MediaTek Jailhouse](https://github.com/mtk-jailhouse/jailhouse) `mtk-v1.0.0`
-and described by [user guide 1.0](https://github.com/mtk-zephyr/genio-docs/releases/tag/v1.0).
+**Pre-release:** `v26.1-rc1` of mtk-zephyr (branch `mtk-v4.4.2`, based on
+Zephyr 4.4.2) and of the samples, paired with
+[MediaTek Jailhouse](https://github.com/mtk-jailhouse/jailhouse) `v26.1-rc1`
+and described by
+[user guide 26.1-rc1](https://github.com/mtk-zephyr/genio-docs/releases/tag/v26.1-rc1),
+whose PDF was revised on 2026-10-28 for the Zephyr tags.
 
-A complete Zephyr workspace at that release, with the Genio tree, its modules
-and the samples (the guide's Chapter 5 sets up the toolchain):
+A complete Zephyr workspace at that pre-release, with the Genio tree, its
+modules and the samples (the guide's Chapter 5 sets up the toolchain):
 
 ```bash
-west init -m https://github.com/mtk-zephyr/samples --mr mtk-genio-v1.0.0 genio-workspace
+west init -m https://github.com/mtk-zephyr/samples --mr v26.1-rc1 genio-workspace
 cd genio-workspace
 west update
 ```
 
-The release tag pins the Genio tree, so `west update` gives the same tree every
-time. Without `--mr`, you get the samples' `main`, which follows the
-development branch `mtk-genio-dev`; that branch is rebased and force-pushed.
+**Last release:** `mtk-genio-v1.0.0` of mtk-zephyr and the samples, paired with
+MediaTek Jailhouse `mtk-v1.0.0` and described by
+[user guide 1.0](https://github.com/mtk-zephyr/genio-docs/releases/tag/v1.0).
+For a workspace at that release, use `--mr mtk-genio-v1.0.0`.
+
+A tag pins the Genio tree, so `west update` gives the same tree every time.
+
+In the history of mtk-zephyr, the subjects of the Genio commits start with
+`GENIO:`, and those of fixes backported from later upstream Zephyr releases
+with `BACKPORT:`.
 
 ## Repositories
 
 | Repository | Content |
 |---|---|
-| [mtk-zephyr](https://github.com/mtk-zephyr/mtk-zephyr) | The Genio Zephyr tree: board support and drivers. Releases are tags (`mtk-genio-v1.0.0`); development is on `mtk-genio-dev` |
-| [samples](https://github.com/mtk-zephyr/samples) | The Genio samples, and the west manifest of a complete workspace; its release tags pin the tree |
+| [mtk-zephyr](https://github.com/mtk-zephyr/mtk-zephyr) | The Genio Zephyr tree: board support and drivers. Releases are tags: the pre-release `v26.1-rc1` on the branch `mtk-v4.4.2` (Zephyr 4.4.2), and the release `mtk-genio-v1.0.0`. Development continues on `mtk-genio-dev`, on a Zephyr 4.5.0-rc1 snapshot |
+| [samples](https://github.com/mtk-zephyr/samples) | The Genio samples, and the west manifest of a complete workspace; its tags pin the tree |
 | [genio-docs](https://github.com/mtk-zephyr/genio-docs) | Documentation, including the user guide |
 
 ## Supported boards
